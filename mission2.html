@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程2作业</title>
+</head>
+<body>
+    <p class="content"></p>
+    在这里输入一个名字:<input type="text" class="text1"></input>
+    <button type ="button" id="button1" class="generate">点我生成笑话</button>
+</body>
+<script>
+    var content = '这句话会展示出来';//这句话会展现在html的p标签中
+
+    var joke = generateJoke();//生成一个随机笑话，放入conten中
+
+    btn = document.querySelector("#button1");
+    btn.addEventListener('click', clickButton);//为按钮新增一个点击事件
+
+    //生成一个笑话
+    function generateJoke() {
+        var targetUser = ['安娜','禅雅塔','布里吉塔','源氏','巴蒂斯特'];
+        var places = ['漓江塔','国王大道','花村','66号公路','好莱坞','伊利奥斯'];
+        var action = ['被末日铁拳锤到了墙上','被不知道从哪来的莱茵哈特撞飞了','被闪光的炸弹黏到了','被黑影入侵并送回到了出生点','断开了网络连接']
+    
+        var targetUser = getElement(targetUser);
+        var place = getElement(places);
+        var action = getElement(action);
+        var sourceUser = document.querySelector(".text1").value || '徐臻祎'
+        var joke = `今天气温 ${Math.random() * 30 } 摄氏度，${targetUser}启动电脑。进入了守望先锋里的${place}地图时，突然就${action}。旁边的队友都惊呆了,${sourceUser}看到了整个过程但并没有慌，因为${targetUser}没有队友保护，现在的游戏环境又这么恶劣。`;
+        console.log(joke);
+        return joke;
+    }
+    function getElement(arr) {
+        var index = Math.floor(Math.random() * arr.length);
+        return arr[index];
+    }
+    function clickButton() {
+        var p = document.querySelector(".content");
+        console.log(p);
+        content = generateJoke();
+        p.innerHTML = content;
+    }
+    </Script>
+</html>
