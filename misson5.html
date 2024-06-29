@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for循环</title>
+    <style type="text/css">
+    </style>
+</head>
+<body>
+  <div class="content"></div>
+  <button id="startBtn">开始倒计时</button>
+  <button id="stopBtn">停止倒计时</button>
+</body>
+<script type="text/javascript">
+    var count = 10;
+    var timer; 
+
+    async function startCountdown() {
+        for (var i = count; i > 0; i--){
+            var para = document.createElement('p');
+            para.textContent = '倒计时:' + i;
+            var output = document.querySelector('.content');
+            output.appendChild(para);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+
+        var para = document.createElement('p');
+        para.textContent = '开始';
+        var output = document.querySelector('.content');
+        output.appendChild(para);
+    }
+
+    function startTimer() {
+        timer = setInterval(startCountdown, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(timer);
+
+        
+        var output = document.querySelector('.content');
+        output.innerHTML = '';
+    }
+
+    document.getElementById('startBtn').addEventListener('click', startTimer);
+    document.getElementById('stopBtn').addEventListener('click', stopTimer);
+
+ 
+    window.onload = startTimer;
+</script>
+</html>
