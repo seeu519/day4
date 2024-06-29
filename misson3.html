@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎来到守望先锋</title>
+</head>
+<body>
+    <label for="overwatch">请选择你的英雄：</label>
+    <select id="overwatch">
+        <option value="">--辅助英雄--</option>
+        <option value="ana">安娜</option>
+        <option value="brig">布丽吉塔</option>
+        <option value="bati">巴蒂斯特</option>
+        <option value="yata">禅雅塔</option>
+        <option value="Kiriko">雾子</option>
+        <option value="Illari">伊拉锐</option>
+        <option value="Angela">天使</option>
+    </select>
+    <p id="xuzhenyi"></p>
+
+    <script>
+        var renderHTML = (content) => {
+            var p = document.querySelector("#xuzhenyi");
+            p.textContent = content;
+        }
+
+        var operation = () => {
+            var select = document.querySelector('#overwatch');
+            console.log(select.value);
+            console.log("我看了一下，选的是", select.value);
+            if (select.value == "ana") {
+                renderHTML("安娜全方位的武器配备让她可以应对战场上的所有情况。她的生物步枪和生物手雷可以用来治疗队友并对敌人造成伤害，同时还能对敌人造成负面影响；她的副武器可以麻醉重要目标，而纳米激素则可以大大强化她的一名队友。");
+            } else if (select.value == "brig") {
+                renderHTML("布丽吉塔热爱探险，富有正义感，与莱因哈特一同游历四方。她用火箭连枷打击敌人，并用能量屏障保护队友。");
+            } else if (select.value == "bati") {
+                renderHTML("巴蒂斯特带来了新的游戏机制，增加了战场上的变化性，直接翻倍的增伤能力成为游戏中的独一档。");
+            } else if (select.value == "yata") {
+                renderHTML("禅雅塔是一位游走于世界寻找灵魂升华之道的机械僧侣。据说任何有幸遇到他的人，其生命轨迹都会发生改变。禅雅塔可以用“谐”治愈盟友，也可以用“乱”削弱敌人，还可以在短时间内进入超凡入圣的状态，获得短暂的无敌与加速效果，并对周围所有队友进行治疗");
+            } 
+              else if (select.value == "Kiriko") {
+                renderHTML("雾子是”守望先锋”的第35位英雄，拥有召唤灵狐的能力，可以通过符咒来为队友进行恢复，也可以通过灵狐能力直接传送到队友身边，是个实力不俗的支援型角色。");
+            }
+            else if (select.value == "Illari") {
+                renderHTML("体内充盈着太阳之力的伊拉锐是最后的印蒂勇士。为了弥补过去的惨剧，她愿不惜一切代价。");
+            }
+            else if (select.value == "Angela") {
+                renderHTML("她的治疗杖可以射出两种光束，治疗或是强化队友，她还可以使用技能使单个队友死而复生，她的终极技能是女武神，能让她在一段时间内像个女武神一般自由穿梭在战场上进行治疗或战斗。");
+            }
+            
+            else {
+                console.log("");
+            }
+        }
+
+        var select = document.querySelector('#overwatch');
+        console.log(select.value);
+        select.addEventListener("change", operation);
+    </script>
+</body>
+</html>
