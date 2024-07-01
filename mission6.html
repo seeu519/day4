@@ -28,12 +28,12 @@
     }
 
     .show #inputBlock,
-    .show #OutputBlock {
+    .show #outputBlock {
       position: relative;
     }
 
     .show #inputBlock #stack1,
-    .show #OutputBlock #stack2 {
+    .show #outputBlock #stack2 {
       position: absolute;
     }
 
@@ -68,11 +68,11 @@
       bottom: 0px;
     }
 
-    .show #OutputBlock {
+    .show #outputBlock {
       height: 30px;
     }
 
-    .show #OutputBlock #stack2 {
+    .show #outputBlock #stack2 {
       bottom: 0px;
       color: #0066cc;
     }
@@ -84,7 +84,7 @@
   <div class="calc">
     <div class="show">
       <input type="text" id="formula">
-      <div class="OutputBlock" id="OutputBlock">
+      <div class="outputBlock" id="outputBlock">
         <div id="stack2"></div>
       </div>
       <div class="inputBlock" id="inputBlock">
@@ -121,32 +121,56 @@
   </div>
 
   <script type="text/javascript">
-    // 初始化stack1
     var stack1 = [0];
-    
+    var stack2 = [];
+    var op = null;
+
     // 初始化显示内容
     function init() {
       stack1 = [0];
-      renderOutput(stack1.join(""));
+      stack2 = [];
+      op = null;
+      renderOutput();
     }
 
     // 渲染输出
-    function renderOutput(content) {
-      document.querySelector("#stack1").innerHTML = content;
+    function renderOutput() {
+      document.querySelector("#stack1").innerHTML = stack1.join("");
+      if (op != null) {
+        document.querySelector("#stack2").innerHTML = stack2.join("") + ' ' + op;
+      } else {
+        document.querySelector("#stack2").innerHTML = '';
+      }
     }
 
     // 处理按钮点击事件
     function foo(event) {
       var value = event.target.innerHTML;
       if (value == 'C' || value == 'CE') {
-        renderOutput(0);
         init();
+      } else if (value == '=') {
+        if (op != null) {
+          var num1 = parseFloat(stack1.join(''));
+          var num2 = parseFloat(stack2.join(''));
+          var ans = eval(num2 + op + num1);
+          stack1 = ans.toString().split('');
+          stack2 = [];
+          op = null;
+          renderOutput();
+        }
+      } else if (value == '+' || value == '-' || value == '*' || value == '/') {
+        if (op == null) {
+          stack2 = [].concat(stack1);
+          op = value;
+          stack1 = [0];
+          renderOutput();
+        }
       } else {
         if (stack1.length == 1 && stack1[0] == '0') {
           stack1.pop();
         }
         stack1.push(value);
-        renderOutput(stack1.join(""));
+        renderOutput();
       }
     }
 
@@ -162,3 +186,4 @@
 </body>
 
 </html>
+
