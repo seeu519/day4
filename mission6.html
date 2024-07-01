@@ -152,12 +152,15 @@
         if (op != null) {
           var num1 = parseFloat(stack1.join(''));
           var num2 = parseFloat(stack2.join(''));
+          //计算结果
           var ans = eval(num2 + op + num1);
+          //显示结果
           stack1 = ans.toString().split('');
           stack2 = [];
           op = null;
           renderOutput();
         }
+        //如果按了+ - * /中的一个
       } else if (value == '+' || value == '-' || value == '*' || value == '/') {
         if (op == null) {
           stack2 = [].concat(stack1);
@@ -167,6 +170,7 @@
         }
       } else {
         if (stack1.length == 1 && stack1[0] == '0') {
+          //把零去掉
           stack1.pop();
         }
         stack1.push(value);
