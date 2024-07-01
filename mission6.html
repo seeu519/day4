@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style type="text/css">
+    .calc .panel .digit {
+      float: left;
+      width: 50px;
+      height: 40px;
+      background-color: #e6e6e6;
+      color: black;
+      font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      line-height: 40px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .calc .panel .digit:hover {
+      background-color: #cfcfcf;
+    }
+
+    .show input {
+      display: none;
+    }
+
+    .show #inputBlock,
+    .show #OutputBlock {
+      position: relative;
+    }
+
+    .show #inputBlock #stack1,
+    .show #OutputBlock #stack2 {
+      position: absolute;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+      content: "";
+      display: table;
+    }
+
+    .clearfix:after {
+      clear: both;
+      overflow: hidden;
+    }
+
+    .calc {
+      width: 250px;
+    }
+
+    .show {
+      background-color: #f2f2f2;
+      height: 80px;
+    }
+
+    .show #inputBlock {
+      height: 50px;
+    }
+
+    .show #inputBlock #stack1 {
+      font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      line-height: 50px;
+      bottom: 0px;
+    }
+
+    .show #OutputBlock {
+      height: 30px;
+    }
+
+    .show #OutputBlock #stack2 {
+      bottom: 0px;
+      color: #0066cc;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 计算器 -->
+  <div class="calc">
+    <div class="show">
+      <input type="text" id="formula">
+      <div class="OutputBlock" id="OutputBlock">
+        <div id="stack2"></div>
+      </div>
+      <div class="inputBlock" id="inputBlock">
+        <div id="stack1">0</div>
+      </div>
+    </div>
+    <div class="panel clearfix">
+      <div class="digit">NEG</div>
+      <div class="digit">CE</div>
+      <div class="digit">C</div>
+      <div class="digit">NEW</div>
+      <div class="digit">/</div>
+      <div class="digit">PI</div>
+      <div class="digit">7</div>
+      <div class="digit">8</div>
+      <div class="digit">9</div>
+      <div class="digit">*</div>
+      <div class="digit">n!</div>
+      <div class="digit">4</div>
+      <div class="digit">5</div>
+      <div class="digit">6</div>
+      <div class="digit">-</div>
+      <div class="digit">ANS</div>
+      <div class="digit">1</div>
+      <div class="digit">2</div>
+      <div class="digit">3</div>
+      <div class="digit">+</div>
+      <div class="digit">(</div>
+      <div class="digit">)</div>
+      <div class="digit">0</div>
+      <div class="digit">.</div>
+      <div class="digit">=</div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    // 初始化stack1
+    var stack1 = [0];
+    
+    // 初始化显示内容
+    function init() {
+      stack1 = [0];
+      renderOutput(stack1.join(""));
+    }
+
+    // 渲染输出
+    function renderOutput(content) {
+      document.querySelector("#stack1").innerHTML = content;
+    }
+
+    // 处理按钮点击事件
+    function foo(event) {
+      var value = event.target.innerHTML;
+      if (value == 'C' || value == 'CE') {
+        renderOutput(0);
+        init();
+      } else {
+        if (stack1.length == 1 && stack1[0] == '0') {
+          stack1.pop();
+        }
+        stack1.push(value);
+        renderOutput(stack1.join(""));
+      }
+    }
+
+    // 获取所有按钮并绑定事件
+    var btns = document.querySelectorAll('.digit');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', foo);
+    }
+
+    // 初始化计算器
+    init();
+  </script>
+</body>
+
+</html>
