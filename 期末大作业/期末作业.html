@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>徐臻祎的网站</title>
+  <link rel="icon" href="image/137.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* 导航栏样式 */
+    .navbar {
+      background-color: aquamarine;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight:bold;
+    }
+
+
+
+    .openbtn {
+      font-size: 20px;
+      cursor: pointer;
+      background-color: #111;
+      color: white;
+      border: none;
+    }
+
+    /* 侧边栏样式 */
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: lightblue;
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease;
+      height: 100%;
+    }
+
+    .carousel img {
+      width: 100vw; /* 占满视口宽度 */
+      height: 100%; /* 占满视口高度 */
+      object-fit: cover; /* 图片填充整个容器，保持比例不变 */
+    }
+  </style>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar">
+  <a href="#" class="logo-link">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\137.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+    Overwatch</a>
+  <button class="openbtn" onclick="openNav()">☰ 快乐运算</button>
+</nav>
+
+<!-- 侧边栏 -->
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="https://seeu519.github.io/day4/mission7/mission7.html">快乐运算</a>
+  <a href="https://seeu519.github.io/day4/mission6">计算器</a>
+  <a href="https://seeu519.github.io/day4/mission2">笑话生成器</a>
+  <a href="https://seeu519.github.io/day4/misson3">英雄选择</a>
+  <a href="https://seeu519.github.io/day4/misson5">倒计时</a>
+</div>
+
+<script>
+  function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+  }
+</script>
+<div class="carousel-container">
+  <div class="carousel">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\128.jpeg" alt="Image 1">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\122.jpeg" alt="Image 2">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\123.png" alt="Image 3">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\124.jpeg" alt="Image 4">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\125.jpeg" alt="Image 5">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\131.png" alt="Image 6">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\132.jpeg" alt="Image 7">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\120.jpeg" alt="Image 8">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\121.jpeg" alt="Image 9">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\126.jpeg" alt="Image 10">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\127.jpeg" alt="Image 11">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\130.jpeg" alt="Image 12">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\134.jpeg" alt="Image 13">
+    <img src="C:\Users\PC\Desktop\期末大作业\image\135.jpeg" alt="Image 14">
+  </div>
+</div>
+
+<script>
+  let carousel = document.querySelector('.carousel');
+  let images = document.querySelectorAll('.carousel img');
+  let currentIndex = 0;
+  let totalImages = images.length;
+  let interval = setInterval(nextImage, 3000); // 自动轮播间隔时间（单位：毫秒）
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % totalImages;
+    updateCarousel();
+  }
+
+  function updateCarousel() {
+    let offset = currentIndex * -100;
+    carousel.style.transform = `translateX(${offset}%)`;
+  }
+
+  carousel.addEventListener('mouseover', () => clearInterval(interval)); // 鼠标悬停停止自动轮播
+  carousel.addEventListener('mouseleave', () => interval = setInterval(nextImage, 3000)); // 鼠标离开继续自动轮播
+</script>
+
+</body>
+</html>
