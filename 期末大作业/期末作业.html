@@ -124,24 +124,25 @@
 </script>
 <div class="carousel-container">
   <div class="carousel">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\128.jpeg" alt="Image 1">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\122.jpeg" alt="Image 2">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\123.png" alt="Image 3">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\124.jpeg" alt="Image 4">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\125.jpeg" alt="Image 5">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\131.png" alt="Image 6">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\132.jpeg" alt="Image 7">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\120.jpeg" alt="Image 8">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\121.jpeg" alt="Image 9">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\126.jpeg" alt="Image 10">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\127.jpeg" alt="Image 11">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\130.jpeg" alt="Image 12">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\134.jpeg" alt="Image 13">
-    <img src="C:\Users\PC\Desktop\期末大作业\image\135.jpeg" alt="Image 14">
+    <img src="image\128.jpeg" alt="Image 1">
+    <img src="image\122.jpeg" alt="Image 2">
+    <img src="image\123.png" alt="Image 3">
+    <img src="image\124.jpeg" alt="Image 4">
+    <img src="image\125.jpeg" alt="Image 5">
+    <img src="image\131.png" alt="Image 6">
+    <img src="image\132.jpeg" alt="Image 7">
+    <img src="image\120.jpeg" alt="Image 8">
+    <img src="image\121.jpeg" alt="Image 9">
+    <img src="image\126.jpeg" alt="Image 10">
+    <img src="image\127.jpeg" alt="Image 11">
+    <img src="image\130.jpeg" alt="Image 12">
+    <img src="image\134.jpeg" alt="Image 13">
+    <img src="image\135.jpeg" alt="Image 14">
   </div>
 </div>
 
 <script>
+  // 获取文档中的元素
   let carousel = document.querySelector('.carousel');
   let images = document.querySelectorAll('.carousel img');
   let currentIndex = 0;
@@ -149,16 +150,19 @@
   let interval = setInterval(nextImage, 3000); // 自动轮播间隔时间（单位：毫秒）
 
   function nextImage() {
+    // 在循环中遍历一个固定范围的索引或者值
     currentIndex = (currentIndex + 1) % totalImages;
     updateCarousel();
   }
 
   function updateCarousel() {
+    //跟踪当前显示的图片或者元素的索引。
     let offset = currentIndex * -100;
     carousel.style.transform = `translateX(${offset}%)`;
   }
-
-  carousel.addEventListener('mouseover', () => clearInterval(interval)); // 鼠标悬停停止自动轮播
+  // 鼠标悬停停止自动轮播
+  carousel.addEventListener('mouseover', () => clearInterval(interval)); 
+  // 鼠标离开继续自动轮播
   carousel.addEventListener('mouseleave', () => interval = setInterval(nextImage, 3000)); // 鼠标离开继续自动轮播
 </script>
 
